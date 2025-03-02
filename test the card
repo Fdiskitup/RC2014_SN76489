@@ -1,0 +1,25 @@
+So there I was with my new RC2014 Card all constructed and ready to play 
+I have it set for all the defaults with JP2 set to mono but the second SN76489AN is removed from U5 
+
+my first attempt was to output some random values to the FF port address using O in the monitor, no luck 
+
+next I booted "MBASIC.COM" microsoft basic for CP/M and spent some time randomly pushing values out the port :
+eventually I figured out that the chip needs to be communicated with in a nicer way.  
+
+10 OUT &HFF, &H9F  ' Send the frequency latch byte (tone channel 0, frequency)
+20 OUT &HFF, &H20  ' Send the low-byte frequency data
+30 OUT &HFF, &H8F  ' Send the attenuation latch byte (tone channel 0)
+40 OUT &HFF, &H0F  ' Set attenuation to 0 (maximum volume)
+50 END
+
+this gave me a nice pure tone out of the speaker 
+
+however, this wont shut off until you give it some more instructions 
+
+110 OUT &HFF, &H9F  ' Send the frequency latch byte MUTE the PSG (tone channel 0, frequency)
+120 OUT &HFF, &HBF  ' Send the low-byte frequency data
+130 OUT &HFF, &HDF  ' Send the attenuation latch byte (tone channel 0)
+140 OUT &HFF, &HFF  ' Set attenuation to 255 (minimum volume)
+150 END
+
+ok so that should be enough to get a beep 
