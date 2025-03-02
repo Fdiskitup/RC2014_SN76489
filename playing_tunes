@@ -1,0 +1,28 @@
+To play tunes you need a player 
+I found "VGMPLAY" on a Google forum 
+https://groups.google.com/g/rc2014-z80/c/9nHnETJzGKU/m/lCmy5DjCCAAJ
+
+get the zip file "VGMPLAY.ZIP" by Marco Maccaferri rewritten from the version here on the Github by J.B.Langston 
+
+use gran searle's "DOWNLOAD.COM" on the CPM side and "BINARY to CPM PACKAGE" for windows 
+
+open "FilePackage.exe" using right click, open as administrator options - this should launch the file packager
+transfer over the content of the VGMPLAY.ZIP file ,
+use select all and copy from the notepad file
+then paste to the teraterm window ......... wait 
+you may want to set the delay per character and delay per line to 1 us each in the serial settings
+
+most important file is VGMPLAY.BIN
+once this is transfered to the CPM system 
+type 
+A> REN VGMPLAY.COM = VGMPLAY.BIN   'TO RENAME THE BIM FILE TO AN EXECUATABLE 
+check with DIR
+TRANSFER OVER A *.vgm FILE TO PLAY   i LIKE LEMMIN01.VGM to test with 
+
+type A> VGMPLAY LEMMIN01.VGM   ' IF ALL IS WELL THE MUSIC SHOULD PLAY 
+
+
+the music files can be found here https://vgmrips.net/packs/
+
+ALOT OF THE MUSIC IS ZIPED UP as VGZ - you can extract these and rename with a VGM extension - be sure to use a simple filename 
+8 characters 
