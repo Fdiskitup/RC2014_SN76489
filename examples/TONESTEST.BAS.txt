@@ -1,0 +1,40 @@
+10 OUT 255, &H9F  ' Tone channel 0 attenuation latch
+20 OUT 255, &H20  ' Tone channel 0 maximum volume
+30 OUT 255, 135  '  Tone channel 0 frequency latch 
+40 OUT 255, 53   '  Tone channel 0 low-byte frequency data
+50 PRINT "Channel 0"
+60 FOR G = 0 TO 1000: NEXT G
+
+80 OUT 255, &HBF  ' Tone channel 1 attenuation latch
+90 OUT 255, &H40  ' Tone channel 1 maximum volume
+100 OUT 255, 167  ' Tone channel 1 frequency latch
+110 OUT 255, 26  '  Tone channel 1 low-byte frequency data
+120 PRINT "Channel 1"
+130 FOR G = 0 TO 1000: NEXT G
+
+150 OUT 255, &HDF  ' Tone channel 2 attenuation latch
+160 OUT 255, &H60  ' Tone channel 2 maximum volume
+170 OUT 255, 197  ' Tone channel 2 frequency latch 
+180 OUT 255, 13  ' Tone channel 2 low-byte frequency data
+190 PRINT "Channel 2"
+200 FOR G = 0 TO 1000: NEXT G
+
+220 PRINT "Channel 3: Noise"
+230 OUT 255, &HE0  ' Noise channel attenuation latch 
+240 OUT 255, &HF0  ' Noise channel maximum volume
+250 OUT 255, &HEF  ' Noise Channel frequency latch
+260 OUT 255, &HF  '  Noise Channel low-byte frequency data
+270 FOR G = 0 TO 1000: NEXT G
+280 GOSUB 310
+290 END
+300 REM HERE IS THE CODE TO SHUT IT ALL OFF
+310 OUT 255, 159 ' channel 0 first chip
+320 OUT 255, 191 ' channel 1 first chip
+330 OUT 255, 223 ' channel 2 first chip
+340 OUT 255, 255 ' noise channel on first chip
+350 OUT &HFB, 159 ' channel 0 second chip
+360 OUT &HFB, 191 ' channel 1 second chip
+370 OUT &HFB, 223 ' channel 2 second chip
+380 OUT &HFB, 255 ' noise channel second chip
+390 FOR G = 1 TO 100: NEXT G
+400 RETURN
